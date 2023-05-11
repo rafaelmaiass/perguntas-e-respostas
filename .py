@@ -1,160 +1,57 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Sistemas de perguntas e respostas básico em python
 
-# C extensions
-*.so
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+perguntas = [
+    {
+        'Pergunta': 'Quanto é 2+2?',
+        'Opções': ['1', '3', '4', '5'],
+        'Resposta': '4',
+    },
+    {
+        'Pergunta': 'Quanto é 5*5?',
+        'Opções': ['25', '55', '10', '51'],
+        'Resposta': '25',
+    },
+    {
+        'Pergunta': 'Quanto é 10/2?',
+        'Opções': ['4', '5', '2', '1'],
+        'Resposta': '5',
+    },
+]
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+qtd_acertos = 0
+for pergunta in perguntas:
+    print('Pergunta:', pergunta['Pergunta'])
+    print()
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+    opcoes = pergunta['Opções']
+    for i, opcao in enumerate(opcoes):
+        print(f'{i})', opcao)
+    print()
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
+    escolha = input('Escolha uma opção: ')
 
-# Translations
-*.mo
-*.pot
+    acertou = False
+    escolha_int = None
+    qtd_opcoes = len(opcoes)
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+    if escolha.isdigit():
+        escolha_int = int(escolha)
 
-# Flask stuff:
-instance/
-.webassets-cache
+    if escolha_int is not None:
+        if escolha_int >= 0 and escolha_int < qtd_opcoes:
+            acertou = True
 
-# Scrapy stuff:
-.scrapy
+    print()
+    if acertou:
+        qtd_acertos += 1
+        print('Acertou 👍')
+    else:
+        print('Errou ❌')
 
-# Sphinx documentation
-docs/_build/
 
-# PyBuilder
-.pybuilder/
-target/
+    print()
 
-# Jupyter Notebook
-.ipynb_checkpoints
 
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/#use-with-ide
-.pdm.toml
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+print('Voce acertou', qtd_acertos)
+print(f'de {len(perguntas)} perguntas.')
